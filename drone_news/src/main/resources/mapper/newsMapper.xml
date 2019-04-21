@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--上面2行的是约束依赖，固定照抄就好-->
+<!--下面的才是要自己编写的地方-->
+<!--写mapper的配置文件第一步就是要写<mapper></mapper>标签-->
+<!--<mapper></mapper>标签里包含着各个CURD操作的SQL语句-->
+<mapper namespace="com.sb_mb.drone_news.dao.newsMapper">
+    <!--定义一个名为BaseResultMap的返回类型-->
+  <resultMap id="BaseResultMap" type="com.sb_mb.drone_news.entity.news">
+        <id column="NewsImage" property="NewsImage" jdbcType="VARCHAR"></id>
+        <result column="NewsID" property="NewsID" jdbcType="INTEGER"></result>
+        <result column="NewsTitle" property="NewsTitle" jdbcType="VARCHAR"></result>
+    </resultMap>
+
+  <!-- 新闻格式 -->
+  <resultMap type="com.sb_mb.drone_news.entity.news" id="NewsBaseResultMap">
+
+ 		<id column="NewsID" property="NewsID" jdbcType="INTEGER"></id>
+        <result column="NewsImage" property="NewsImage" jdbcType="VARCHAR"></result>
+ 		<result column="NewsTitle" property="NewsTitle" jdbcType="VARCHAR"></result>
+        <result column="NewsContent" property="NewsContent" jdbcType="LONGVARCHAR"></result>
+        <result column="ReadCount" property="ReadCount" jdbcType="INTEGER"></result>
+        <result column="NewsAuthorName" property="NewsAuthorName" jdbcType="VARCHAR"></result>
+        <result column="NewsAuthorImage" property="NewsAuthorImage" jdbcType="VARCHAR"></result>
+ 	</resultMap>
+
+  <!-- 视频格式 -->
+  <resultMap type="com.sb_mb.drone_news.entity.video" id="VideoBaseResultMap">
+ 		<id column ="VideoID" property="VideoID" jdbcType="INTEGER"></id>
+        <result column="VideoLink" property="VideoLink" jdbcType="VARCHAR"></result>
+ 		<result column="VideoTitle" property="VideoTitle" jdbcType="VARCHAR"></result>
+ 		<result column="VideoAuthorName" property="VideoAuthorName" jdbcType="VARCHAR"></result>
+        <result column="VideoAuthorImage" property="VideoAuthorImage" jdbcType="LONGVARCHAR"></result>
+
+ 	</resultMap>
+
+
+
+  <!--&lt;!&ndash;插入语句&ndash;&gt;-->
+  <!--&lt;!&ndash;id要与UserMapper文件中表示插入的函数名一致，parameterType表示函数的输入参数的类型&ndash;&gt;-->
+  <!--<insert id="insertUser" parameterType="com.example.demo.User">-->
+      <!--insert into texttable(id,name,age)values(#{id,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{age,jdbcType=INTEGER})/*SQL语句*/-->
+   <!--</insert>-->
+
+  <!-- 查询所有新闻 -->
+  <select id="selectAllNews" resultMap="NewsBaseResultMap">
+      select *from news
+  </select>
+
+  <select id="selectNews" parameterType="java.lang.Integer" resultMap="NewsBaseResultMap">
+       select * from news where id = #{id,jdbcType=INTEGER}
+  </select>
+  <!-- 查询所有视频 -->
+  <select id="selectAllVideo" resultMap="VideoBaseResultMap">
+    	select *from video
+  </select>
+
+  <!--&lt;!&ndash;删除语句&ndash;&gt;-->
+  <!--<delete id="deleteUser" parameterType="java.lang.Integer">-->
+      <!--delete from texttable where id =#{id,jdbcType=INTEGER}-->
+    <!--</delete>-->
+
+  <!--&lt;!&ndash;查找语句&ndash;&gt;-->
+  <!--&lt;!&ndash;resultMap表示函数返回的类型&ndash;&gt;-->
+  <!--<select id="selectUser" parameterType="java.lang.Integer" resultMap="BaseResultMap">-->
+       <!--select * from texttable where id = #{id,jdbcType=INTEGER}-->
+    <!--</select>-->
+
+  <!--&lt;!&ndash;查找语句&ndash;&gt;-->
+  <!--<select id="selectAll" resultMap="BaseResultMap">-->
+        <!--select * from texttable-->
+    <!--</select>-->
+
+  <!--&lt;!&ndash;修改语句&ndash;&gt;-->
+  <!--<update id="updateUser" parameterType="com.sb_mb.drone_news.entity.News">-->
+        <!--update texttable set name=#{name,jdbcType=VARCHAR},age=#{age,jdbcType=INTEGER} where id=#{id,jdbcType=INTEGER}-->
+    <!--</update>-->
+
+
+
+
+</mapper>
