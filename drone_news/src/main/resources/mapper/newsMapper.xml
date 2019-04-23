@@ -27,10 +27,14 @@
   <!-- 视频格式 -->
   <resultMap type="com.sb_mb.drone_news.entity.video" id="VideoBaseResultMap">
  		<id column ="VideoID" property="VideoID" jdbcType="INTEGER"></id>
-        <result column="VideoLink" property="VideoLink" jdbcType="VARCHAR"></result>
+        <result column="VideoLink" property="VideoLink" jdbcType="LONGVARCHAR"></result>
  		<result column="VideoTitle" property="VideoTitle" jdbcType="VARCHAR"></result>
  		<result column="VideoAuthorName" property="VideoAuthorName" jdbcType="VARCHAR"></result>
         <result column="VideoAuthorImage" property="VideoAuthorImage" jdbcType="LONGVARCHAR"></result>
+        <result column="ViewCount" property="ViewCount" jdbcType="INTEGER"></result>
+        <result column="VideoLike" property="VideoLike" jdbcType="INTEGER"></result>
+        <result column="VideoComments" property="VideoComments" jdbcType="INTEGER"></result>
+        <result column="VideoType" property="VideoType" jdbcType="VARCHAR"></result>
 
  	</resultMap>
 
@@ -48,7 +52,7 @@
   </select>
 
   <select id="selectNews" parameterType="java.lang.Integer" resultMap="NewsBaseResultMap">
-       select * from news where id = #{id,jdbcType=INTEGER}
+       select * from news where NewsID = #{id,jdbcType=INTEGER}
   </select>
   <!-- 查询所有视频 -->
   <select id="selectAllVideo" resultMap="VideoBaseResultMap">

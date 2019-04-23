@@ -7,6 +7,12 @@ public class video {
 	private String VideoTitle;
 	private String VideoAuthorName;
 	private String VideoAuthorImage;
+	private Integer ViewCount;
+	private Integer VideoLike;
+	private Integer VideoComments;
+    private String  VideoType;
+	public video() {
+	}
 
 	public Integer getVideoID() {
 		return VideoID;
@@ -46,5 +52,37 @@ public class video {
 
 	public void setVideoAuthorImage(String videoAuthorImage) {
 		VideoAuthorImage = videoAuthorImage;
+	}
+
+	public int getViewCount() {
+		return ViewCount;
+	}
+
+	public void setViewCount(Integer viewCount) {
+		ViewCount = viewCount;
+	}
+
+	public int getVideoLike() {
+		return VideoLike;
+	}
+
+	public void setVideoLike(Integer videoLike) {
+		VideoLike = videoLike;
+	}
+
+	public int getVideoComments() {
+		return VideoComments;
+	}
+
+	public void setVideoComments(Integer videoComments) {
+		VideoComments = videoComments;
+	}
+
+	public String getVideoType() {
+		return VideoType;
+	}
+
+	public void setVideoType(String videoType) {
+		VideoType = videoType;
 	}
 }

@@ -10,5 +10,6 @@ import java.util.List;
 public interface userService {
 	List<news> findAllNews();
 	List<video> findAllVideo();
+	news selectNews(int newsid);
 
 }

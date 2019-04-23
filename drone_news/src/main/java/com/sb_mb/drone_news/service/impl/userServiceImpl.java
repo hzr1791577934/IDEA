@@ -21,4 +21,9 @@ public class userServiceImpl implements userService {
 	public List<video> findAllVideo() {
 		return newsmapper.selectAllVideo();
 	}
+
+	@Override
+	public news selectNews(int newsid){
+		return newsmapper.selectNews(newsid);
+	}
 }

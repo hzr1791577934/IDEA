@@ -11,5 +11,6 @@ public interface newsMapper {
     List<news> selectAllNews();
     //查询所有视频
     List<video> selectAllVideo();
-
+    //查询特定新闻
+    news selectNews(int newsid);
 }
