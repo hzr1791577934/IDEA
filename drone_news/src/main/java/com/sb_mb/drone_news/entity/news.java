@@ -10,6 +10,19 @@ public class news {
 	private String NewsAuthorName;
 	private String NewsAuthorImage;
 
+	public news(Integer id,String image,String title,String content,Integer count,String authorname,String authorimage){
+		NewsID = id;
+		NewsImage = image;
+		NewsTitle = title;
+		NewsAuthorImage = authorimage;
+		NewsAuthorName = authorname;
+		ReadCount = count;
+		NewsContent = content;
+
+	}
+	public news(){
+
+	}
 
 
 	public Integer getNewsID() {

@@ -7,7 +7,10 @@ import com.sb_mb.drone_news.service.userService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 @Service
 public class userServiceImpl implements userService {
 	@Autowired
@@ -26,4 +29,20 @@ public class userServiceImpl implements userService {
 	public news selectNews(int newsid){
 		return newsmapper.selectNews(newsid);
 	}
+
+	@Override
+	public int deleteNews(int newsid) {
+		return newsmapper.deleteNews(newsid);
+	}
+
+	@Override
+	public int addNews(news news) {
+		return newsmapper.addnews(news);
+	}
+
+	@Override
+	public int addVideo(video video0) {
+		return newsmapper.addvideo(video0);
+	}
+
 }

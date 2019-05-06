@@ -37,16 +37,25 @@
         <result column="VideoType" property="VideoType" jdbcType="VARCHAR"></result>
 
  	</resultMap>
+    <!--删除语句-->
+    <delete id="deletenews" parameterType="java.lang.Integer">
+      delete from news where NewsID =#{id,jdbcType=INTEGER}
+    </delete>
+    <!--插入新闻-->
+    <insert id="addnews" parameterType="com.sb_mb.drone_news.entity.news">
+      insert into news(NewsImage,NewsID,NewsTitle,NewsContent,ReadCount,NewsAuthorName,NewsAuthorImage)
+      values(#{newsImage,jdbcType=VARCHAR},#{newsID,jdbcType=INTEGER},#{newsTitle,jdbcType=VARCHAR},
+      #{newsContent,jdbcType=LONGVARCHAR},#{readCount,jdbcType=INTEGER},#{newsAuthorName,jdbcType=VARCHAR},
+      #{newsAuthorImage,jdbcType=VARCHAR})/*SQL语句*/
+    </insert>
 
-
-
-  <!--&lt;!&ndash;插入语句&ndash;&gt;-->
-  <!--&lt;!&ndash;id要与UserMapper文件中表示插入的函数名一致，parameterType表示函数的输入参数的类型&ndash;&gt;-->
-  <!--<insert id="insertUser" parameterType="com.example.demo.User">-->
-      <!--insert into texttable(id,name,age)values(#{id,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{age,jdbcType=INTEGER})/*SQL语句*/-->
-   <!--</insert>-->
-
-  <!-- 查询所有新闻 -->
+    <!--插入视频-->
+    <insert id="addvideo" parameterType="com.sb_mb.drone_news.entity.video">
+      insert into video(VideoID,VideoLink,VideoTitle,VideoAuthorName,VideoType,ViewCount,VideoLike,VideoComments,VideoAuthorImage)
+      values(#{videoID,jdbcType=INTEGER},#{videoLink,jdbcType=LONGVARCHAR},#{videoTitle,jdbcType=VARCHAR},
+      #{videoAuthorName,jdbcType=VARCHAR},#{videoType,jdbcType=VARCHAR},#{viewCount,jdbcType=INTEGER},#{videoLike,jdbcType=INTEGER},
+      #{videoComments,jdbcType=INTEGER},#{videoAuthorImage,jdbcType=LONGVARCHAR})/*SQL语句*/
+    </insert>
   <select id="selectAllNews" resultMap="NewsBaseResultMap">
       select *from news
   </select>
@@ -58,29 +67,6 @@
   <select id="selectAllVideo" resultMap="VideoBaseResultMap">
     	select *from video
   </select>
-
-  <!--&lt;!&ndash;删除语句&ndash;&gt;-->
-  <!--<delete id="deleteUser" parameterType="java.lang.Integer">-->
-      <!--delete from texttable where id =#{id,jdbcType=INTEGER}-->
-    <!--</delete>-->
-
-  <!--&lt;!&ndash;查找语句&ndash;&gt;-->
-  <!--&lt;!&ndash;resultMap表示函数返回的类型&ndash;&gt;-->
-  <!--<select id="selectUser" parameterType="java.lang.Integer" resultMap="BaseResultMap">-->
-       <!--select * from texttable where id = #{id,jdbcType=INTEGER}-->
-    <!--</select>-->
-
-  <!--&lt;!&ndash;查找语句&ndash;&gt;-->
-  <!--<select id="selectAll" resultMap="BaseResultMap">-->
-        <!--select * from texttable-->
-    <!--</select>-->
-
-  <!--&lt;!&ndash;修改语句&ndash;&gt;-->
-  <!--<update id="updateUser" parameterType="com.sb_mb.drone_news.entity.News">-->
-        <!--update texttable set name=#{name,jdbcType=VARCHAR},age=#{age,jdbcType=INTEGER} where id=#{id,jdbcType=INTEGER}-->
-    <!--</update>-->
-
-
 
 
 </mapper>

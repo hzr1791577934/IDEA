@@ -6,11 +6,25 @@ public class video {
 	private String VideoLink;
 	private String VideoTitle;
 	private String VideoAuthorName;
-	private String VideoAuthorImage;
+	private String  VideoType;
 	private Integer ViewCount;
 	private Integer VideoLike;
 	private Integer VideoComments;
-    private String  VideoType;
+	private String VideoAuthorImage;
+
+	public video(Integer id,String link,String videoTitle,
+				 String videoAuthorName,String type,
+				 Integer count,Integer like,Integer comment,String videoAuthorImage){
+		VideoID = id;
+		VideoLink = link;
+		VideoAuthorImage = videoAuthorImage;
+		VideoAuthorName = videoAuthorName;
+		VideoTitle = videoTitle;
+		VideoComments = comment;
+		ViewCount = count;
+		VideoLike = like;
+		VideoType = type;
+	}
 	public video() {
 	}
 
