@@ -41,6 +41,9 @@
     <delete id="deletenews" parameterType="java.lang.Integer">
       delete from news where NewsID =#{id,jdbcType=INTEGER}
     </delete>
+    <delete id="deletevideo" parameterType="java.lang.Integer">
+      delete from video where VideoID =#{id,jdbcType=INTEGER}
+    </delete>
     <!--插入新闻-->
     <insert id="addnews" parameterType="com.sb_mb.drone_news.entity.news">
       insert into news(NewsImage,NewsID,NewsTitle,NewsContent,ReadCount,NewsAuthorName,NewsAuthorImage)
@@ -63,10 +66,22 @@
   <select id="selectNews" parameterType="java.lang.Integer" resultMap="NewsBaseResultMap">
        select * from news where NewsID = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectVideo" parameterType="java.lang.Integer" resultMap="VideoBaseResultMap">
+       select * from video where VideoID = #{id,jdbcType=INTEGER}
+  </select>
   <!-- 查询所有视频 -->
   <select id="selectAllVideo" resultMap="VideoBaseResultMap">
     	select *from video
   </select>
-
-
+    <!--更新新闻信息-->
+  <update id="updatenews" parameterType="com.sb_mb.drone_news.entity.news">
+		update news set NewsTitle = #{newsTitle,jdbcType=VARCHAR},NewsAuthorName = #{newsAuthorName,jdbcType=LONGVARCHAR},
+		ReadCount = #{readCount,jdbcType=INTEGER}
+		where NewsID=#{newsID,jdbcType=INTEGER}
+  </update>
+  <update id="updatevideo" parameterType="com.sb_mb.drone_news.entity.video">
+		update video set VideoTitle = #{videoTitle,jdbcType=VARCHAR},VideoAuthorName = #{videoAuthorName,jdbcType=VARCHAR},
+		VideoType = #{videoType,jdbcType=VARCHAR}
+		where VideoID=#{videoID,jdbcType=INTEGER}
+  </update>
 </mapper>

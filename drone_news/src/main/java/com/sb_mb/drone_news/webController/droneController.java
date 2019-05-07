@@ -96,6 +96,51 @@ public class droneController {
 		map.put("status","ok");
 		return map;
 	}
-
-
+	//网站删除新闻
+	@RequestMapping(value = "/deletenews",method = RequestMethod.POST)
+	public Map<String,Object> deletenews(@RequestParam("newsID")Integer id)
+	{
+		Map<String,Object> map=new HashMap<>();
+		userservice.deleteNews(id);
+		map.put("status","ok");
+		return map;
+	}
+	//网站删除视频
+	@RequestMapping(value = "/deletevideo",method = RequestMethod.POST)
+	public Map<String,Object> deletevideo(@RequestParam("videoID")Integer id)
+	{
+		Map<String,Object> map=new HashMap<>();
+		userservice.deleteVideo(id);
+		map.put("status","ok");
+		return map;
+	}
+	//更新新闻
+	@RequestMapping(value = "/updatenews",method = RequestMethod.POST)
+	public Map<String,Object> updateNews(@RequestParam("newsID")Integer id, @RequestParam("newsTitle")String title,
+									  @RequestParam("readCount")Integer count,@RequestParam("newsAuthorName")String authorname)
+	{
+		Map<String,Object> map=new HashMap<>();
+		news new0 = userservice.selectNews(id);
+		System.out.println(new0.getNewsAuthorName());
+		new0.setNewsTitle(title);
+		new0.setReadCount(count);
+		new0.setNewsAuthorName(authorname);
+		userservice.updateNews(new0);
+		map.put("status","ok");
+		return map;
+	}
+	//更新视频
+	@RequestMapping(value = "/updatevideo",method = RequestMethod.POST)
+	public Map<String,Object> updatevideo(@RequestParam("videoID")Integer id, @RequestParam("videoTitle")String title,
+										 @RequestParam("videoType")String type,@RequestParam("videoAuthorName")String authorname)
+	{
+		Map<String,Object> map=new HashMap<>();
+		video video0 = userservice.selectVideo(id);
+		video0.setVideoTitle(title);
+		video0.setVideoAuthorName(authorname);
+		video0.setVideoType(type);
+		userservice.updateVideo(video0);
+		map.put("status","ok");
+		return map;
+	}
 }

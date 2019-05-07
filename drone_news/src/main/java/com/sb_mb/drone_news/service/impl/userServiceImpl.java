@@ -31,8 +31,18 @@ public class userServiceImpl implements userService {
 	}
 
 	@Override
+	public video selectVideo(int videoid) {
+		return newsmapper.selectVideo(videoid);
+	}
+
+	@Override
 	public int deleteNews(int newsid) {
-		return newsmapper.deleteNews(newsid);
+		return newsmapper.deletenews(newsid);
+	}
+
+	@Override
+	public int deleteVideo(int videoid) {
+		return newsmapper.deletevideo(videoid);
 	}
 
 	@Override
@@ -43,6 +53,16 @@ public class userServiceImpl implements userService {
 	@Override
 	public int addVideo(video video0) {
 		return newsmapper.addvideo(video0);
+	}
+
+	@Override
+	public int updateNews(news news) {
+		return newsmapper.updatenews(news);
+	}
+
+	@Override
+	public int updateVideo(video video) {
+		return newsmapper.updatevideo(video);
 	}
 
 }

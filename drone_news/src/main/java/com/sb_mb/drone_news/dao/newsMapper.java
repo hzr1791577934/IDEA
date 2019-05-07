@@ -14,10 +14,18 @@ public interface newsMapper {
     List<video> selectAllVideo();
     //查询特定新闻
     news selectNews(int newsid);
+    //查询特定视频
+    video selectVideo(int videoid);
     //删除新闻
-    int deleteNews(int newsid);
+    int deletenews(int newsid);
     //插入新闻
     int addnews(news news);
     //插入视频
     int addvideo(video video);
+    //删除视频
+    int deletevideo(int videoid);
+    //更新新闻
+    int updatenews(news news);
+    //更新视频
+    int updatevideo(video video);
 }

@@ -12,9 +12,14 @@ public interface userService {
 	List<news> findAllNews();
 	List<video> findAllVideo();
 	news selectNews(int newsid);
+	video selectVideo(int videoid);
 	int deleteNews(int newsid);
+	int deleteVideo(int videoid);
 	int addNews(news news);
 	int addVideo(video video);
+	int updateNews(news news);
+	int updateVideo(video video);
+
 
 
 }
