@@ -37,6 +37,11 @@
         <result column="VideoType" property="VideoType" jdbcType="VARCHAR"></result>
 
  	</resultMap>
+    <!--/用户格式/-->
+  <resultMap type="com.sb_mb.drone_news.entity.user" id="UserBaseResultMap" >
+        <id column="Account" property="Account" jdbcType="INTEGER"></id>
+        <result column="Password" property="Password" jdbcType="VARCHAR"></result>
+  </resultMap>
     <!--删除语句-->
     <delete id="deletenews" parameterType="java.lang.Integer">
       delete from news where NewsID =#{id,jdbcType=INTEGER}
@@ -69,6 +74,9 @@
   <select id="selectVideo" parameterType="java.lang.Integer" resultMap="VideoBaseResultMap">
        select * from video where VideoID = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectUser" parameterType="java.lang.Integer" resultMap="UserBaseResultMap">
+       select * from users where Account = #{id,jdbcType=INTEGER}
+  </select>
   <!-- 查询所有视频 -->
   <select id="selectAllVideo" resultMap="VideoBaseResultMap">
     	select *from video
@@ -84,4 +92,5 @@
 		VideoType = #{videoType,jdbcType=VARCHAR}
 		where VideoID=#{videoID,jdbcType=INTEGER}
   </update>
+
 </mapper>

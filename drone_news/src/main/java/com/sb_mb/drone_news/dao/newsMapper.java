@@ -1,6 +1,7 @@
 package com.sb_mb.drone_news.dao;
 
 import com.sb_mb.drone_news.entity.news;
+import com.sb_mb.drone_news.entity.user;
 import com.sb_mb.drone_news.entity.video;
 
 import java.util.List;
@@ -16,6 +17,8 @@ public interface newsMapper {
     news selectNews(int newsid);
     //查询特定视频
     video selectVideo(int videoid);
+    //查询特定用户
+    user selectUser(int account);
     //删除新闻
     int deletenews(int newsid);
     //插入新闻

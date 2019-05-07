@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.sb_mb.drone_news.entity.news;
+import com.sb_mb.drone_news.entity.user;
 import com.sb_mb.drone_news.entity.video;
 import com.sb_mb.drone_news.service.userService;
 
@@ -141,6 +142,22 @@ public class droneController {
 		video0.setVideoType(type);
 		userservice.updateVideo(video0);
 		map.put("status","ok");
+		return map;
+	}
+	//登录
+	@RequestMapping(value = "/login",method = RequestMethod.POST)
+	public Map<String,Object> login(@RequestParam("account")Integer id,@RequestParam("password")String password){
+		Map<String,Object> map=new HashMap<>();
+		user reader=userservice.selectUser(id);
+		if(reader!=null){
+			if(reader.getPassword().equals(password)){
+				map.put("result","yes");
+				map.put("loginUser",reader);
+				map.put("condi",1);
+				return map;
+			}
+		}
+		map.put("result","no");
 		return map;
 	}
 }

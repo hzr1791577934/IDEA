@@ -2,6 +2,7 @@ package com.sb_mb.drone_news.service.impl;
 
 import com.sb_mb.drone_news.dao.newsMapper;
 import com.sb_mb.drone_news.entity.news;
+import com.sb_mb.drone_news.entity.user;
 import com.sb_mb.drone_news.entity.video;
 import com.sb_mb.drone_news.service.userService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,11 @@ public class userServiceImpl implements userService {
 	@Override
 	public video selectVideo(int videoid) {
 		return newsmapper.selectVideo(videoid);
+	}
+
+	@Override
+	public user selectUser(int id) {
+		return newsmapper.selectUser(id);
 	}
 
 	@Override
