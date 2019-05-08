@@ -28,6 +28,8 @@ public interface newsMapper {
     int addnews(news news);
     //插入视频
     int addvideo(video video);
+    //插入评论
+    int addcomments(comments comments);
     //删除视频
     int deletevideo(int videoid);
     //更新新闻

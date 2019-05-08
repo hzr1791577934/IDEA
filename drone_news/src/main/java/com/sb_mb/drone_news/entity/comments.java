@@ -6,6 +6,16 @@ public class comments {
 	private String Content;
 	private String AuthorName;
 	private String AuthorImage;
+	public comments(int commentsid,int newid,String content){
+		CommentsID = (int)(Math.random()*10000);
+		NewID = newid;
+		Content = content;
+		AuthorName = "环球网";
+		AuthorImage = "http://pqaq7wrwt.bkt.clouddn.com/huanqiu.jfif";
+	}
+	public comments(){
+
+	}
 
 	public int getNewID() {
 		return NewID;

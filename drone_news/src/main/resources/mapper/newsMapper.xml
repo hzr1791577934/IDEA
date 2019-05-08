@@ -64,7 +64,12 @@
       #{newsContent,jdbcType=LONGVARCHAR},#{readCount,jdbcType=INTEGER},#{newsAuthorName,jdbcType=VARCHAR},
       #{newsAuthorImage,jdbcType=VARCHAR})/*SQL语句*/
     </insert>
-
+    <!--插入评论-->
+    <insert id="addcomments" parameterType="com.sb_mb.drone_news.entity.comments">
+      insert into comments(CommentsID,NewID,Content,AuthorName,AuthorImage)
+      values(#{commentsID,jdbcType=INTEGER},#{newID,jdbcType=INTEGER},#{content,jdbcType=LONGVARCHAR},
+      #{authorName,jdbcType=VARCHAR},#{authorImage,jdbcType=LONGVARCHAR})/*SQL语句*/
+    </insert>
     <!--插入视频-->
     <insert id="addvideo" parameterType="com.sb_mb.drone_news.entity.video">
       insert into video(VideoID,VideoLink,VideoTitle,VideoAuthorName,VideoType,ViewCount,VideoLike,VideoComments,VideoAuthorImage)

@@ -75,14 +75,18 @@ public class droneController {
 		modelMap.put("news", news);
 		return modelMap;
 	}
-//	//小程序根据id获得特定新闻评论
-//	@RequestMapping(value = "/getcomments",method = RequestMethod.GET)
-//	private Map<String, Object> getcomments(Integer newid) {
-//		Map<String, Object> modelMap = new HashMap<String, Object>();
-////		comments comments = userservice.selectComments(newid);
-////		modelMap.put("comments", comments);
-//		return modelMap;
-//	}
+
+	//网站添加评论
+	@RequestMapping(value = "/addcomments",method = RequestMethod.POST)
+	public Map<String,Object> addnews(@RequestParam("commentsID")Integer commentsid,@RequestParam("newsID")Integer id,
+									  @RequestParam("content")String content)
+	{
+		Map<String,Object> map=new HashMap<>();
+		userservice.addComments(new comments(commentsid,id,content));
+		map.put("status","ok");
+		return map;
+	}
+
 	//网站添加新闻
 	@RequestMapping(value = "/addnews",method = RequestMethod.POST)
 	public Map<String,Object> addnews(@RequestParam("newsID")Integer id,@RequestParam("newsImage")String image,
@@ -95,6 +99,7 @@ public class droneController {
 		map.put("status","ok");
 		return map;
 	}
+
 	//网站添加视频
 	@RequestMapping(value = "/addvideo",method = RequestMethod.POST)
 	public Map<String,Object> addvideo(@RequestParam("videoID")Integer id,@RequestParam("videoLink")String link,

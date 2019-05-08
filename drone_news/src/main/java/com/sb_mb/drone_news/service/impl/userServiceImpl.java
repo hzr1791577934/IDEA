@@ -68,6 +68,11 @@ public class userServiceImpl implements userService {
 	}
 
 	@Override
+	public int addComments(comments comments) {
+		return newsmapper.addcomments(comments);
+	}
+
+	@Override
 	public int updateNews(news news) {
 		return newsmapper.updatenews(news);
 	}
