@@ -3,6 +3,7 @@ package com.sb_mb.drone_news.webController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.sb_mb.drone_news.entity.comments;
 import com.sb_mb.drone_news.entity.news;
 import com.sb_mb.drone_news.entity.user;
 import com.sb_mb.drone_news.entity.video;
@@ -67,10 +68,21 @@ public class droneController {
 	@RequestMapping(value = "/getnews",method = RequestMethod.GET)
 	private Map<String, Object> getnews(Integer newid) {
 		Map<String, Object> modelMap = new HashMap<String, Object>();
+		List<comments> comments=userservice.selectComments(newid);
+		//comments comments = userservice.selectComments(newid);
 		news news = userservice.selectNews(newid);
+		modelMap.put("comments", comments);
 		modelMap.put("news", news);
 		return modelMap;
 	}
+//	//小程序根据id获得特定新闻评论
+//	@RequestMapping(value = "/getcomments",method = RequestMethod.GET)
+//	private Map<String, Object> getcomments(Integer newid) {
+//		Map<String, Object> modelMap = new HashMap<String, Object>();
+////		comments comments = userservice.selectComments(newid);
+////		modelMap.put("comments", comments);
+//		return modelMap;
+//	}
 	//网站添加新闻
 	@RequestMapping(value = "/addnews",method = RequestMethod.POST)
 	public Map<String,Object> addnews(@RequestParam("newsID")Integer id,@RequestParam("newsImage")String image,

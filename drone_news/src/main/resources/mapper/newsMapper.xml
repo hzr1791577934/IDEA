@@ -42,6 +42,14 @@
         <id column="Account" property="Account" jdbcType="INTEGER"></id>
         <result column="Password" property="Password" jdbcType="VARCHAR"></result>
   </resultMap>
+    <!--评论格式-->
+  <resultMap type="com.sb_mb.drone_news.entity.comments" id="CommentsBaseResultMap" >
+        <id column="CommentsID" property="CommentsID" jdbcType="INTEGER"></id>
+        <result column="NewID" property="NewID" jdbcType="INTEGER"></result>
+        <result column="Content" property="Content" jdbcType="LONGVARCHAR"></result>
+        <result column="AuthorName" property="AuthorName" jdbcType="VARCHAR"></result>
+        <result column="AuthorImage" property="AuthorImage" jdbcType="LONGVARCHAR"></result>
+  </resultMap>
     <!--删除语句-->
     <delete id="deletenews" parameterType="java.lang.Integer">
       delete from news where NewsID =#{id,jdbcType=INTEGER}
@@ -70,6 +78,9 @@
 
   <select id="selectNews" parameterType="java.lang.Integer" resultMap="NewsBaseResultMap">
        select * from news where NewsID = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectComments" parameterType="java.lang.Integer" resultMap="CommentsBaseResultMap">
+       select * from comments where NewID = #{NewID,jdbcType=INTEGER}
   </select>
   <select id="selectVideo" parameterType="java.lang.Integer" resultMap="VideoBaseResultMap">
        select * from video where VideoID = #{id,jdbcType=INTEGER}

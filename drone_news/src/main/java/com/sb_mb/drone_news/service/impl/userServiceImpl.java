@@ -1,6 +1,7 @@
 package com.sb_mb.drone_news.service.impl;
 
 import com.sb_mb.drone_news.dao.newsMapper;
+import com.sb_mb.drone_news.entity.comments;
 import com.sb_mb.drone_news.entity.news;
 import com.sb_mb.drone_news.entity.user;
 import com.sb_mb.drone_news.entity.video;
@@ -39,6 +40,11 @@ public class userServiceImpl implements userService {
 	@Override
 	public user selectUser(int id) {
 		return newsmapper.selectUser(id);
+	}
+
+	@Override
+	public List<comments> selectComments(int newid) {
+		return newsmapper.selectComments(newid);
 	}
 
 	@Override
