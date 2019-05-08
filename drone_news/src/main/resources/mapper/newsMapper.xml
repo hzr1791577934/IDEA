@@ -92,5 +92,11 @@
 		VideoType = #{videoType,jdbcType=VARCHAR}
 		where VideoID=#{videoID,jdbcType=INTEGER}
   </update>
-
+  <!--更新视频的喜欢数目-->
+  <update id="updateVideolike" parameterType="java.lang.Integer">
+    	update Video set VideoLike=VideoLike+1 where VideoID=#{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateViewCount" parameterType="java.lang.Integer">
+    	update Video set ViewCount=ViewCount+1 where VideoID=#{id,jdbcType=INTEGER}
+  </update>
 </mapper>

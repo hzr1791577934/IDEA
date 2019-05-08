@@ -71,4 +71,13 @@ public class userServiceImpl implements userService {
 		return newsmapper.updatevideo(video);
 	}
 
+	@Override
+	public int updateVideolike(int videoid) {
+		return newsmapper.updateVideolike(videoid);
+	}
+	@Override
+	public int updateViewCount(int videoid) {
+		return newsmapper.updateViewCount(videoid);
+	}
+
 }

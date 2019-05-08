@@ -21,7 +21,8 @@ public interface userService {
 	int addVideo(video video);
 	int updateNews(news news);
 	int updateVideo(video video);
-
+	int updateVideolike(int videoid);
+	int updateViewCount(int videoid);
 
 
 

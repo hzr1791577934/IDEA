@@ -31,4 +31,8 @@ public interface newsMapper {
     int updatenews(news news);
     //更新视频
     int updatevideo(video video);
+    //更细视频的喜欢数目
+    int updateVideolike(int videoid);
+    //更细视频的观看数目
+    int updateViewCount(int videoid);
 }

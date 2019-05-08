@@ -144,6 +144,26 @@ public class droneController {
 		map.put("status","ok");
 		return map;
 	}
+	//更新视频
+	@RequestMapping(value = "/updateVideoLike",method = RequestMethod.GET)
+	public Map<String,Object> updatevideoLike(Integer VideoID)
+	{
+		Map<String,Object> map=new HashMap<>();
+//		video video0 = userservice.selectVideo(id);
+		userservice.updateVideolike(VideoID);
+		map.put("status","ok");
+		return map;
+	}
+	//更新视频
+	@RequestMapping(value = "/updateViewCount",method = RequestMethod.GET)
+	public Map<String,Object> updateViewCount(Integer VideoID)
+	{
+		Map<String,Object> map=new HashMap<>();
+//		video video0 = userservice.selectVideo(id);
+		userservice.updateViewCount(VideoID);
+		map.put("status","ok");
+		return map;
+	}
 	//登录
 	@RequestMapping(value = "/login",method = RequestMethod.POST)
 	public Map<String,Object> login(@RequestParam("account")Integer id,@RequestParam("password")String password){
@@ -160,4 +180,5 @@ public class droneController {
 		map.put("result","no");
 		return map;
 	}
+
 }
