@@ -1,6 +1,4 @@
 package com.sb_mb.drone_news.webController;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.sb_mb.drone_news.entity.comments;
@@ -8,14 +6,10 @@ import com.sb_mb.drone_news.entity.news;
 import com.sb_mb.drone_news.entity.user;
 import com.sb_mb.drone_news.entity.video;
 import com.sb_mb.drone_news.service.userService;
-
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
