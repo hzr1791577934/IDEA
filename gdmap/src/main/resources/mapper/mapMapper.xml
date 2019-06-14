@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--上面2行的是约束依赖，固定照抄就好-->
+<!--下面的才是要自己编写的地方-->
+<!--写mapper的配置文件第一步就是要写<mapper></mapper>标签-->
+<!--<mapper></mapper>标签里包含着各个CURD操作的SQL语句-->
+<mapper namespace="com.wxmini.gdmap.dao.mapMapper">
+
+    <!-- 轨迹格式 -->
+    <resultMap type="com.wxmini.gdmap.entity.footprint" id="FootprintBaseResultMap">
+ 		<id column="id" property="id" jdbcType="INTEGER"></id>
+        <result column="userAccount" property="userAccount" jdbcType="INTEGER"></result>
+ 		<result column="ttime" property="ttime" jdbcType="LONGVARCHAR"></result>
+        <result column="longitude" property="longitude" jdbcType="DOUBLE"></result>
+        <result column="latitude" property="latitude" jdbcType="DOUBLE"></result>
+        <result column="place" property="place" jdbcType="VARCHAR"></result>
+        <result column="descr" property="descr" jdbcType="LONGVARCHAR"></result>
+        <result column="tttime" property="tttime" jdbcType="LONGVARCHAR"></result>
+ 	</resultMap>
+    <!--收藏格式-->
+        <resultMap type="com.wxmini.gdmap.entity.mycollection" id="MycollectionBaseResultMap">
+ 		<id column="id" property="id" jdbcType="INTEGER"></id>
+        <result column="clan" property="clan" jdbcType="DOUBLE"></result>
+ 		<result column="clat" property="clat" jdbcType="DOUBLE"></result>
+        <result column="cplace" property="cplace" jdbcType="LONGVARCHAR"></result>
+        <result column="cdescr" property="cdescr" jdbcType="LONGVARCHAR"></result>
+ 	</resultMap>
+
+    <!--/用户格式/-->
+    <resultMap type="com.wxmini.gdmap.entity.user" id="UserBaseResultMap">
+        <id column="Account" property="Account" jdbcType="INTEGER"></id>
+        <result column="Password" property="Password" jdbcType="VARCHAR"></result>
+  </resultMap>
+
+    <!--删除语句-->
+    <delete id="deleteFootprint" parameterType="java.lang.Integer">
+      delete from footprint where id =#{id,jdbcType=INTEGER}
+    </delete>
+    <!--删除收藏-->
+    <delete id="deleteCollection" parameterType="java.lang.Integer">
+      delete from mycollection where id =#{id,jdbcType=INTEGER}
+    </delete>
+
+    <!--插入轨迹-->
+    <insert id="addFootprint" parameterType="com.wxmini.gdmap.entity.footprint">
+      insert into footprint(id,userAccount,ttime,longitude,latitude,place,descr,tttime)
+      values(#{id,jdbcType=INTEGER},#{userAccount,jdbcType=INTEGER},#{ttime,jdbcType=TIMESTAMP},
+      #{longitude,jdbcType=DOUBLE},#{latitude,jdbcType=DOUBLE},#{place,jdbcType=VARCHAR},#{descr,jdbcType=LONGVARCHAR},#{tttime,jdbcType=LONGVARCHAR})/*SQL语句*/
+    </insert>
+    <!--插入收藏-->
+    <insert id="addCollection" parameterType="com.wxmini.gdmap.entity.mycollection">
+      insert into mycollection(id,clan,clat,cplace,cdescr)
+      values(#{id,jdbcType=INTEGER},#{clan,jdbcType=DOUBLE},#{clat,jdbcType=DOUBLE},
+      #{cplace,jdbcType=LONGVARCHAR},#{cdescr,jdbcType=LONGVARCHAR})/*SQL语句*/
+    </insert>
+
+   <!--获取所有的历史轨迹-->
+  <select id="selectAllFootprint" resultMap="FootprintBaseResultMap">
+      select *from footprint
+  </select>
+    <!--获取所有的收藏-->
+  <select id="selectAllCollection" resultMap="MycollectionBaseResultMap">
+      select *from mycollection
+  </select>
+    <!--计算历史足迹表中条目数-->
+  <select id="selectAllFootprintcount" resultType="int">
+      select count(*)from footprint
+  </select>
+    <!--计算collection表中条目数-->
+    <select id="selectAllCollectioncount" resultType="int">
+      select count(*)from mycollection
+  </select>
+    <!--获取特定用户的历史轨迹-->
+  <select id="selectfootprint" parameterType="java.lang.Integer" resultMap="FootprintBaseResultMap">
+       select * from footprint where userAccount = #{userAccount,jdbcType=INTEGER}
+  </select>
+    <!--获取特定id的历史轨迹-->
+  <select id="selectonefootprint" parameterType="java.lang.Integer" resultMap="FootprintBaseResultMap">
+       select * from footprint where id = #{id,jdbcType=INTEGER}
+  </select>
+    <!--获取特定id的collection-->
+  <select id="selectonecollection" parameterType="java.lang.Integer" resultMap="MycollectionBaseResultMap">
+       select * from mycollection where id = #{id,jdbcType=INTEGER}
+  </select>
+    <!--获取用户密码-->
+  <select id="selectUser" parameterType="java.lang.Integer" resultMap="UserBaseResultMap">
+       select * from users where Account = #{id,jdbcType=INTEGER}
+  </select>
+
+    <!--更新足迹信息-->
+  <update id="updateFootprint" parameterType="com.wxmini.gdmap.entity.footprint">
+		update footprint set place = #{place,jdbcType=VARCHAR},descr = #{descr,jdbcType=LONGVARCHAR}
+		where id=#{id,jdbcType=INTEGER}
+  </update>
+    <!--更新收藏信息-->
+  <update id="updateCollection" parameterType="com.wxmini.gdmap.entity.mycollection">
+		update mycollection set cplace = #{cplace,jdbcType=LONGVARCHAR},cdescr = #{cdescr,jdbcType=LONGVARCHAR}
+		where id=#{id,jdbcType=INTEGER}
+  </update>
+
+
+</mapper>
